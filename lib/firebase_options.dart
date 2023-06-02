@@ -50,19 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBZzC0LawqdB4Lj55Zh6PUX5LTHPRagiNA',
-    appId: '1:1082954153953:android:7b2b68847ee9e3b90e1ca0',
-    messagingSenderId: '1082954153953',
-    projectId: 'bloc-auth-app-169',
-    storageBucket: 'bloc-auth-app-169.appspot.com',
+    apiKey: 'AIzaSyATFhDW-qZACc29wIMZx-zDB5Qn4umrW5k',
+    appId: '1:198667841221:android:93a4b4e6ff489a6e264aac',
+    messagingSenderId: '198667841221',
+    projectId: 'happy-angels-2023',
+    storageBucket: 'happy-angels-2023.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD0jMtxBsERt4wbNCiTsL8sU9dYSQzfwGY',
-    appId: '1:1082954153953:ios:d11e2df8c6bfeac30e1ca0',
-    messagingSenderId: '1082954153953',
-    projectId: 'bloc-auth-app-169',
-    storageBucket: 'bloc-auth-app-169.appspot.com',
+    apiKey: 'AIzaSyDzQRH3j9csV3g5SuHs8nhdgHi2kSGDfRk',
+    appId: '1:198667841221:ios:7b2d70166a393d5d264aac',
+    messagingSenderId: '198667841221',
+    projectId: 'happy-angels-2023',
+    storageBucket: 'happy-angels-2023.appspot.com',
+    iosClientId: '198667841221-p50vn7mptk1a01fp4h3aiho7e84eso0f.apps.googleusercontent.com',
     iosBundleId: 'com.example.blocAuthApp',
   );
 }
