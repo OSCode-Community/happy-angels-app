@@ -9,7 +9,7 @@ enum ProfileStatus {
 
 class ProfileState extends Equatable {
   final ProfileStatus profileStatus;
-  final User user;
+  final Student user;
   final CustomError error;
   ProfileState({
     required this.profileStatus,
@@ -20,7 +20,7 @@ class ProfileState extends Equatable {
   factory ProfileState.initial() {
     return ProfileState(
       profileStatus: ProfileStatus.initial,
-      user: User.initialUser(),
+      user: Student.initialUser(),
       error: CustomError(),
     );
   }
@@ -34,7 +34,7 @@ class ProfileState extends Equatable {
 
   ProfileState copyWith({
     ProfileStatus? profileStatus,
-    User? user,
+    Student? user,
     CustomError? error,
   }) {
     return ProfileState(

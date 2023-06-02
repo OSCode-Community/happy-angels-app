@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_auth_app/models/custom_error_model.dart';
-import 'package:bloc_auth_app/models/user_model.dart';
+import 'package:bloc_auth_app/models/student_model.dart';
 import 'package:bloc_auth_app/repositories/profile_repository.dart';
 import 'package:equatable/equatable.dart';
 
@@ -16,7 +16,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(state.copyWith(profileStatus: ProfileStatus.loading));
 
     try {
-      final User user = await profileRepository.getProfile(uid: uid);
+      final Student user = await profileRepository.getProfile(uid: uid);
       emit(state.copyWith(
         profileStatus: ProfileStatus.loaded,
         user: user,

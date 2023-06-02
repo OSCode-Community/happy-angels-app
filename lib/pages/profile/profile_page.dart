@@ -74,12 +74,12 @@ class _ProfilePageState extends State<ProfilePage> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                FadeInImage.assetNetwork(
-                  placeholder: 'assets/Loading_icon.gif',
-                  image: state.user.profileImage,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
+                // FadeInImage.assetNetwork(
+                //   placeholder: 'assets/Loading_icon.gif',
+                //   image: state.user.profileImage,
+                //   width: double.infinity,
+                //   fit: BoxFit.cover,
+                // ),
                 SizedBox(height: 10.0),
                 Padding(
                   padding: const EdgeInsets.only(left: 15.0),
@@ -87,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '-id: ${state.user.id}',
+                        '-id: ${state.user.sid}',
                         style: TextStyle(fontSize: 18.0),
                       ),
                       SizedBox(height: 10.0),
@@ -102,12 +102,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       SizedBox(height: 10.0),
                       Text(
-                        '- point: ${state.user.point}',
+                        '- point: ${state.user.currentPoints}',
                         style: TextStyle(fontSize: 18.0),
                       ),
                       SizedBox(height: 10.0),
                       Text(
-                        '- rank: ${state.user.rank}',
+                        '- cumlative: ${state.user.cumulativePoints}',
                         style: TextStyle(fontSize: 18.0),
                       ),
                     ],

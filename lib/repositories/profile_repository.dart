@@ -1,6 +1,6 @@
 import 'package:bloc_auth_app/constants/db_constants.dart';
 import 'package:bloc_auth_app/models/custom_error_model.dart';
-import 'package:bloc_auth_app/models/user_model.dart';
+import 'package:bloc_auth_app/models/student_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProfileRepository {
@@ -9,12 +9,12 @@ class ProfileRepository {
     required this.firebaseFirestore,
   });
 
-  Future<User> getProfile({required String uid}) async {
+  Future<Student> getProfile({required String uid}) async {
     try {
       final DocumentSnapshot userDoc = await userRef.doc(uid).get();
 
       if (userDoc.exists) {
-        final currentUser = User.fromDoc(userDoc);
+        final currentUser = Student.fromDoc(userDoc);
         return currentUser;
       }
 

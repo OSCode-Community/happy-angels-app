@@ -1,5 +1,5 @@
 import 'package:bloc_auth_app/blocs/signin/signin_cubit.dart';
-import 'package:bloc_auth_app/pages/signup_page.dart';
+import 'package:bloc_auth_app/pages/auth/signup_page.dart';
 import 'package:bloc_auth_app/utils/error_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart';
