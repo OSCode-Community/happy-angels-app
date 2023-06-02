@@ -28,9 +28,15 @@ class AuthRepository {
       await userRef.doc(signedInUser.uid).set({
         'name': name,
         'email': email,
-        'profileImage': 'https://picsum.photos/300',
-        'point': 0,
-        'rank': 'bronze',
+        'birthday': '',
+        'assignedAngel': '',
+        'cumulativePoints': -1,
+        'currentPoints': 0,
+        'gender': '',
+        'phone': '',
+        'subscriptionDeadline': '',
+        'subscriptionStatus': 'unsubscribed',
+        'address': '',
       });
     } on fbAuth.FirebaseAuthException catch (e) {
       throw CustomError(

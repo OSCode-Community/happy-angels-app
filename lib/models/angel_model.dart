@@ -11,6 +11,7 @@ class Angel extends Equatable {
   final String profession;
   final String gender;
   final String quote;
+  final String address;
   // final String profileImage;
   final List<String> assignedStudents;
   Angel({
@@ -22,6 +23,7 @@ class Angel extends Equatable {
     required this.profession,
     required this.gender,
     required this.quote,
+    required this.address,
     required this.assignedStudents,
   });
 
@@ -37,6 +39,7 @@ class Angel extends Equatable {
       gender: angelData["gender"],
       quote: angelData["quote"],
       assignedStudents: angelData["assignedStudents"],
+      address: angelData["address"],
     );
   }
 
@@ -55,6 +58,7 @@ class Angel extends Equatable {
       gender,
       quote,
       assignedStudents,
+      address,
     ];
   }
 }

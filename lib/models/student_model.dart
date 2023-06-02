@@ -14,6 +14,7 @@ class Student extends Equatable {
   final int currentPoints;
   final int cumulativePoints;
   final String assignedAngel;
+  final String address;
   // final String profileImage;
 
   Student({
@@ -28,6 +29,7 @@ class Student extends Equatable {
     required this.currentPoints,
     required this.cumulativePoints,
     required this.assignedAngel,
+    required this.address,
   });
 
   factory Student.fromDoc(DocumentSnapshot studentDoc) {
@@ -43,7 +45,8 @@ class Student extends Equatable {
         subscriptionDeadline: studentData["subscriptionDeadline"],
         currentPoints: studentData["currentPoints"],
         cumulativePoints: studentData["cumulativePoints"],
-        assignedAngel: studentData["assignedAngel"]);
+        assignedAngel: studentData["assignedAngel"],
+        address: studentData["address"]);
   }
   factory Student.initialUser() {
     return Student(
@@ -58,6 +61,7 @@ class Student extends Equatable {
       phone: '',
       subscriptionDeadline: '',
       subscriptionStatus: '',
+      address: '',
     );
   }
   @override
@@ -74,6 +78,7 @@ class Student extends Equatable {
       currentPoints,
       cumulativePoints,
       assignedAngel,
+      address
     ];
   }
 
