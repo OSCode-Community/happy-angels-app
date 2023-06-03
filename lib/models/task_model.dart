@@ -1,13 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
+enum Filter { all, active, completed }
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class Task extends Equatable {
   final String tid;
   final String time;
   final String title;
   final String desc;
-  final String status;
+  final bool completed;
   final String assignedBy; // angel id
   final String assignedTo; // student id
   final bool sentPoints;
@@ -17,7 +19,7 @@ class Task extends Equatable {
     required this.time,
     required this.title,
     required this.desc,
-    required this.status,
+    required this.completed,
     required this.assignedBy,
     required this.assignedTo,
     required this.sentPoints,
@@ -31,7 +33,7 @@ class Task extends Equatable {
       time: taskData!["time"],
       title: taskData["title"],
       desc: taskData["desc"],
-      status: taskData["status"],
+      completed: taskData["completed"],
       assignedBy: taskData["assignedBy"],
       assignedTo: taskData["assignedTo"],
       sentPoints: taskData["sentPoints"],
@@ -46,7 +48,7 @@ class Task extends Equatable {
       time,
       title,
       desc,
-      status,
+      completed,
       assignedBy,
       assignedTo,
       sentPoints,
