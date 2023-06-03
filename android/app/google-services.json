@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "198667841221",
+    "project_id": "happy-angels-2023",
+    "storage_bucket": "happy-angels-2023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198667841221:android:93a4b4e6ff489a6e264aac",
+        "android_client_info": {
+          "package_name": "com.example.bloc_auth_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198667841221-oquekk39u5phhrfbl3b4vcjc25ubkmhj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATFhDW-qZACc29wIMZx-zDB5Qn4umrW5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198667841221-oquekk39u5phhrfbl3b4vcjc25ubkmhj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "198667841221-p50vn7mptk1a01fp4h3aiho7e84eso0f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.blocAuthApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
