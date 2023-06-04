@@ -41,6 +41,7 @@ dependencies:
   firebase_auth: ^4.6.1
   flutter_bloc: ^8.1.3
   bloc: ^8.1.2
+  intl: ^0.17.0
   validators:
   
 
@@ -72,6 +73,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
