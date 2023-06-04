@@ -5,14 +5,14 @@ import 'package:bloc_auth_app/utils/error_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+class AccountPage extends StatefulWidget {
+  const AccountPage({Key? key}) : super(key: key);
 
   @override
-  _ProfilePageState createState() => _ProfilePageState();
+  State<AccountPage> createState() => _AccountPageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _AccountPageState extends State<AccountPage> {
   @override
   void initState() {
     super.initState();
@@ -27,97 +27,285 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile'),
-      ),
-      body: BlocConsumer<ProfileCubit, ProfileState>(
-        listener: (context, state) {
-          if (state.profileStatus == ProfileStatus.error) {
-            errorDialog(context, state.error);
-          }
-        },
-        builder: (context, state) {
-          if (state.profileStatus == ProfileStatus.initial) {
-            return Container();
-          } else if (state.profileStatus == ProfileStatus.loading) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state.profileStatus == ProfileStatus.error) {
-            return Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+    return BlocConsumer<ProfileCubit, ProfileState>(
+      listener: (context, state) {
+        if (state.profileStatus == ProfileStatus.error) {
+          errorDialog(context, state.error);
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+            backgroundColor: Colors.grey[100],
+            body: SingleChildScrollView(
+              child: Stack(
                 children: [
-                  Image.network(
-                    'https://www.freeiconspng.com/thumbs/error-icon/error-icon-32.png',
-                    width: 75,
-                    height: 75,
-                    fit: BoxFit.cover,
-                  ),
-                  SizedBox(width: 20.0),
-                  Text(
-                    'Ooops!\nTry again',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.red,
+                  Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment(-0.2, 0.6),
+                        end: Alignment(0.95, 1.5),
+                        colors: [Color(0xFFA31ACB), Color(0x80F5EA5A)],
+                      ),
                     ),
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(20, 20, 20, 100),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(20, 110, 0, 20),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Column(children: [
+                                Text(
+                                  state.user.name,
+                                  style: TextStyle(
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                              ]),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 58.0),
+                            child: Image.asset(
+                              'assets/images/account.png',
+                              width: 170,
+                              height: 180,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 270),
+                    width: MediaQuery.of(context).size.width,
+                    decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(50),
+                            topRight: Radius.circular(50))),
+                    child: Column(children: [
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 35, right: 35),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              boxShadow: const [
+                                BoxShadow(
+                                  blurRadius: 6.0,
+                                  color: Colors.purple,
+                                  offset: Offset(
+                                    0,
+                                    5,
+                                  ),
+                                ),
+                              ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(30),
+                                  bottomRight: Radius.circular(30))),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Text(
+                                  "Current Subscription",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.purple),
+                                ),
+                              ),
+                              state.user.subscriptionStatus == "subscribed"
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(20.0),
+                                          child: Text(
+                                            "12mo Plan",
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.black),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(20.0),
+                                          child: Text(
+                                            "Active",
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.grey),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  : Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(20.0),
+                                          child: Text(
+                                            "Not Subscribed",
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.black),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 35, right: 35),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              boxShadow: const [
+                                BoxShadow(
+                                  blurRadius: 6.0,
+                                  color: Colors.purple,
+                                  offset: Offset(
+                                    0,
+                                    5,
+                                  ),
+                                ),
+                              ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(30),
+                                  bottomRight: Radius.circular(30))),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Text(
+                                  "Assigned Angel",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.purple),
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    'assets/images/accountparent.png',
+                                    width: 60,
+                                    height: 60,
+                                  ),
+                                  Text(
+                                    "Miss ${state.user.assignedAngel}",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.grey),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 35, right: 35),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              boxShadow: const [
+                                BoxShadow(
+                                  blurRadius: 6.0,
+                                  color: Colors.purple,
+                                  offset: Offset(
+                                    0,
+                                    5,
+                                  ),
+                                ),
+                              ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(30),
+                                  bottomRight: Radius.circular(30))),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Text(
+                                  "Parent's Badges",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.purple),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Icon(
+                                      Icons.local_police,
+                                      color: Colors.amberAccent,
+                                      size: 35,
+                                    ),
+                                    Icon(
+                                      Icons.local_police,
+                                      color: Colors.amberAccent,
+                                      size: 35,
+                                    ),
+                                    Icon(
+                                      Icons.local_police,
+                                      color: Colors.amberAccent,
+                                      size: 35,
+                                    ),
+                                    Icon(
+                                      Icons.local_police_outlined,
+                                      size: 35,
+                                    )
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 100,
+                      ),
+                    ]),
                   ),
                 ],
               ),
-            );
-          }
-          return Card(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // FadeInImage.assetNetwork(
-                //   placeholder: 'assets/Loading_icon.gif',
-                //   image: state.user.profileImage,
-                //   width: double.infinity,
-                //   fit: BoxFit.cover,
-                // ),
-                SizedBox(height: 10.0),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '-id: ${state.user.sid}',
-                        style: TextStyle(fontSize: 18.0),
-                      ),
-                      SizedBox(height: 10.0),
-                      Text(
-                        '- name: ${state.user.name}',
-                        style: TextStyle(fontSize: 18.0),
-                      ),
-                      SizedBox(height: 10.0),
-                      Text(
-                        '- email: ${state.user.email}',
-                        style: TextStyle(fontSize: 18.0),
-                      ),
-                      SizedBox(height: 10.0),
-                      Text(
-                        '- point: ${state.user.currentPoints}',
-                        style: TextStyle(fontSize: 18.0),
-                      ),
-                      SizedBox(height: 10.0),
-                      Text(
-                        '- cumlative: ${state.user.cumulativePoints}',
-                        style: TextStyle(fontSize: 18.0),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          );
-        },
-      ),
+            ));
+      },
     );
   }
 }
