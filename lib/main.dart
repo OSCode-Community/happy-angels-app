@@ -5,6 +5,7 @@ import 'package:bloc_auth_app/blocs/signup/signup_cubit.dart';
 import 'package:bloc_auth_app/pages/home/home_page.dart';
 import 'package:bloc_auth_app/pages/auth/signin_page.dart';
 import 'package:bloc_auth_app/pages/auth/signup_page.dart';
+import 'package:bloc_auth_app/pages/splash/welcome_page.dart';
 import 'package:bloc_auth_app/pages/splash/splash_page.dart';
 import 'package:bloc_auth_app/repositories/auth_repository.dart';
 import 'package:bloc_auth_app/repositories/profile_repository.dart';
@@ -74,6 +75,7 @@ class MyApp extends StatelessWidget {
             SignupPage.routeName: (context) => SignupPage(),
             SignInPage.routeName: (context) => SignInPage(),
             HomePage.routeName: (context) => HomePage(),
+            WelcomePage.routeName: (context) => WelcomePage(),
           },
         ),
       ),
