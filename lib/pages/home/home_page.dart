@@ -1,7 +1,10 @@
 import 'package:bloc_auth_app/blocs/auth/auth_bloc.dart';
+import 'package:bloc_auth_app/pages/auth/signin_page.dart';
 import 'package:bloc_auth_app/pages/profile/profile_page.dart';
+import 'package:bloc_auth_app/sidedrawer/sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = '/home';
@@ -18,7 +21,7 @@ class _HomePageState extends State<HomePage> {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          // automaticallyImplyLeading: false,
           title: Text('Home'),
           actions: [
             IconButton(
@@ -33,13 +36,16 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.account_circle),
             ),
             IconButton(
-              onPressed: () {
+              onPressed: () async {
+                // final pref = await SharedPreferences.getInstance();
+                // pref.setBool("showHome", false);
                 context.read<AuthBloc>().add(SignOutRequestedEvent());
               },
               icon: Icon(Icons.exit_to_app),
             ),
           ],
         ),
+        drawer: DrawerScreen(),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

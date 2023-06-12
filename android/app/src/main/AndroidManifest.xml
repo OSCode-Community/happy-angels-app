@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.bloc_auth_app">
     <application
         android:label="bloc_auth_app"
         android:name="${applicationName}"
