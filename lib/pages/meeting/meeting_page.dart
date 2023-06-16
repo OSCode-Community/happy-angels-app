@@ -49,10 +49,12 @@ class _MeetingPageState extends State<MeetingPage> {
     final String userID = context.read<AuthBloc>().state.user!.uid;
     meetingHelper = WebRTCMeetingHelper(
       url: "http://www.example.com/",
-      meetingId: widget.meetingDetail.id,
+      meetingId: 'testing',
       userId: userID,
       name: widget.name,
     );
+    print("Connection:  ${meetingHelper!.connections}");
+
     MediaStream localStream =
         await navigator.mediaDevices.getUserMedia(mediaConstraints);
     _localRenderer.srcObject = localStream;

@@ -1,4 +1,5 @@
 import 'package:bloc_auth_app/blocs/auth/auth_bloc.dart';
+import 'package:bloc_auth_app/constants/meeting_constants.dart';
 import 'package:bloc_auth_app/models/meeting_details_model.dart';
 import 'package:bloc_auth_app/pages/auth/signin_page.dart';
 import 'package:bloc_auth_app/pages/meeting/meeting_page.dart';
@@ -7,6 +8,9 @@ import 'package:bloc_auth_app/sidedrawer/sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
+import 'package:zego_uikit_signaling_plugin/zego_uikit_signaling_plugin.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = '/home';
@@ -17,17 +21,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void _startCall() {
-    print("Calling ..");
-    MeetingDetails meetingDetail = MeetingDetails(
-      id: context.read<AuthBloc>().state.user!.uid,
-      hostID: "http://www.example.com/",
-      hostName: "",
+  @override
+  void initState() {
+    super.initState();
+    ZegoUIKitPrebuiltCallInvitationService().init(
+      appID: zegocloud_app_id /*input your AppID*/,
+      appSign: zegocloud_app_sign /*input your AppSign*/,
+      userID: context.read<AuthBloc>().state.user!.uid,
+      userName: context.read<AuthBloc>().state.user!.displayName!,
+      plugins: [ZegoUIKitSignalingPlugin()],
     );
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (_) => MeetingPage(meetingDetail: meetingDetail)));
   }
 
   @override
@@ -75,9 +78,15 @@ class _HomePageState extends State<HomePage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 24.0),
               ),
-              GestureDetector(
-                child: Text('Click to Call'),
-                onTap: _startCall,
+              ZegoSendCallInvitationButton(
+                isVideoCall: true,
+                resourceID: "zegouikit_call", // For offline call notification
+                invitees: [
+                  ZegoUIKitUser(
+                    id: 'mDl6fLqUK3YGtmJx206wAQ2XL9g2',
+                    name: 'Akshay',
+                  ),
+                ],
               )
             ],
           ),

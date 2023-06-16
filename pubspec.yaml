@@ -50,6 +50,8 @@ dependencies:
   flutter_webrtc:
   flutter_webrtc_wrapper:
   snippet_coder_utils:
+  zego_uikit_prebuilt_call: ^3.3.7
+  zego_uikit_signaling_plugin: ^2.1.8
 
 dev_dependencies:
   flutter_test:
