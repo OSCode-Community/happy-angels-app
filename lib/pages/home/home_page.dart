@@ -1,5 +1,7 @@
 import 'package:bloc_auth_app/blocs/auth/auth_bloc.dart';
+import 'package:bloc_auth_app/models/meeting_details_model.dart';
 import 'package:bloc_auth_app/pages/auth/signin_page.dart';
+import 'package:bloc_auth_app/pages/meeting/meeting_page.dart';
 import 'package:bloc_auth_app/pages/profile/profile_page.dart';
 import 'package:bloc_auth_app/sidedrawer/sidebar.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void _startCall() {
+    print("Calling ..");
+    MeetingDetails meetingDetail = MeetingDetails(
+      id: context.read<AuthBloc>().state.user!.uid,
+      hostID: "http://www.example.com/",
+      hostName: "",
+    );
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => MeetingPage(meetingDetail: meetingDetail)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -60,6 +75,10 @@ class _HomePageState extends State<HomePage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 24.0),
               ),
+              GestureDetector(
+                child: Text('Click to Call'),
+                onTap: _startCall,
+              )
             ],
           ),
         ),
