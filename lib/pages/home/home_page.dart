@@ -1,4 +1,5 @@
 import 'package:bloc_auth_app/blocs/auth/auth_bloc.dart';
+import 'package:bloc_auth_app/blocs/profile/profile_cubit.dart';
 import 'package:bloc_auth_app/constants/meeting_constants.dart';
 import 'package:bloc_auth_app/models/meeting_details_model.dart';
 import 'package:bloc_auth_app/pages/auth/signin_page.dart';
@@ -27,8 +28,8 @@ class _HomePageState extends State<HomePage> {
     ZegoUIKitPrebuiltCallInvitationService().init(
       appID: zegocloud_app_id /*input your AppID*/,
       appSign: zegocloud_app_sign /*input your AppSign*/,
-      userID: context.read<AuthBloc>().state.user!.uid,
-      userName: context.read<AuthBloc>().state.user!.displayName!,
+      userID: context.read<ProfileCubit>().state.user.sid,
+      userName: context.read<ProfileCubit>().state.user.name,
       plugins: [ZegoUIKitSignalingPlugin()],
     );
   }
