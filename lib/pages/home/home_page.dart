@@ -1,5 +1,7 @@
 import 'package:bloc_auth_app/blocs/auth/auth_bloc.dart';
+import 'package:bloc_auth_app/blocs/profile/profile_cubit.dart';
 import 'package:bloc_auth_app/pages/auth/signin_page.dart';
+import 'package:bloc_auth_app/pages/meeting/call_page.dart';
 import 'package:bloc_auth_app/pages/profile/profile_page.dart';
 import 'package:bloc_auth_app/sidedrawer/sidebar.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void _startMeeting() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => CallPage(
+                  callID: 'testing',
+                  username: context.read<ProfileCubit>().state.user.name,
+                  userId: context.read<ProfileCubit>().state.user.sid,
+                )));
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -60,6 +73,8 @@ class _HomePageState extends State<HomePage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 24.0),
               ),
+              GestureDetector(
+                  onTap: _startMeeting, child: Text('Click to start meeting')),
             ],
           ),
         ),
